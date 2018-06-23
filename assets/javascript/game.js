@@ -4,7 +4,7 @@ var losses = 0
 var guessesLeft = 9
 
 // arrays for computerKeys and guesses
-var computerKeys = ['a', 'b', 'c', 'd', 'e', 'f', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+var computerKeys = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 var guesses = [
     // {guess: null,
     // space: ' '}
@@ -30,30 +30,37 @@ document.onkeyup = function(event) {
     // Perform guessCheck
     var checkDuplicateGuess = guesses.indexOf(userGuess);
 
+    // Check if user input is a letter
+    var isLetter = computerKeys.indexOf(userGuess);
+
     // Adds userGuess to array of guesses
     const addGuess = function (guess) {
         guesses.push(guess)
     }
     
     // Logic determines outcome of game
-    if (checkDuplicateGuess >= 0) {
-        alert(`Already guessed letter "${userGuess}"!!!`);
-    }
-    if (userGuess === chosenKey) {
-        wins++;
-        guessesLeft = 9;
-        ChooseNewKey();
-        clearGuesses();
-    } 
-    else if ((userGuess != chosenKey) && (checkDuplicateGuess == -1)) {
-        guessesLeft = guessesLeft -1;
-        addGuess(userGuess);
-    }
-    if (guessesLeft < 1) {
-        losses++;
-        guessesLeft = 9;
-        ChooseNewKey();
-        clearGuesses();
+    if(isLetter >= 0) {
+        if (checkDuplicateGuess >= 0) {
+            alert(`Already guessed letter "${userGuess}"!!!`);
+        }
+        if (userGuess === chosenKey) {
+            wins++;
+            guessesLeft = 9;
+            ChooseNewKey();
+            clearGuesses();
+        } 
+        else if ((userGuess != chosenKey) && (checkDuplicateGuess == -1)) {
+            guessesLeft = guessesLeft -1;
+            addGuess(userGuess);
+        }
+        if (guessesLeft < 1) {
+            losses++;
+            guessesLeft = 9;
+            ChooseNewKey();
+            clearGuesses();
+        }
+    } else {
+        alert("Choose a letter");
     }
     
     // alert(userGuess + chosenKey);
