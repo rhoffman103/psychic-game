@@ -23,14 +23,25 @@ const clearGuesses = function () {
 // Print each guess with a comma and space
 const addGuess = function (guess) {
     guesses.push(guess);
-    // var tmp = guess + ", ";
-    // allGuesses += tmp;
-    // return guesses.join(", ");
 };
+
+const resetGame = function () {
+    guessesLeft = 10;
+    ChooseNewKey();
+    clearGuesses();
+}
+
+// Creating variables to hold new HTML.
+const updateTracker = function () {
+    document.querySelector("#wins").innerHTML = wins;
+    document.querySelector("#losses").innerHTML = losses;
+    document.querySelector("#guessesLeft").innerHTML = guessesLeft;
+    document.querySelector("#guesses").innerHTML = guesses.join(", ");
+}
 
 // This function is run whenever the user presses a key.
 document.onkeyup = function(event) {
-
+    
     // Determines which key was pressed.
     var userGuess = event.key.toLowerCase();
 
@@ -41,50 +52,28 @@ document.onkeyup = function(event) {
     var isLetter = computerKeys.indexOf(userGuess);
 
     // if (!userGuess.match(/[a-z]/i)) return;
-
-    // Adds userGuess to array of guesses
-    // const addGuess = function (guess) {
-    //     guesses.push(guess)
-    // };
     
     // Logic determines outcome of game
     if(isLetter >= 0) {
         if (checkDuplicateGuess >= 0) {
             alert(`Already guessed letter "${userGuess}"!!!`);
-        };
-        if (userGuess === chosenKey) {
+        } else if (userGuess === chosenKey) {
             wins++;
-            guessesLeft = 10;
-            ChooseNewKey();
-            clearGuesses();
-        } 
-        else if ((userGuess != chosenKey) && (checkDuplicateGuess == -1)) {
-            guessesLeft -= 1;
-            addGuess(userGuess);
-        }
-        if (guessesLeft < 1) {
-            losses++;
-            guessesLeft = 10;
-            ChooseNewKey();
-            clearGuesses();
+            alert("Winner winner chicken dinner!");
+            resetGame();
+        } else if ((userGuess != chosenKey) && (checkDuplicateGuess == -1)) {
+            if (guessesLeft <= 1) {
+                losses++;
+                alert("You lose! Try again!");
+                resetGame();
+            } else {
+                guessesLeft -= 1;
+                addGuess(userGuess);
+            }
         }
     } else {
         alert("Choose a letter");
     }
-    
-    // alert(userGuess + chosenKey);
 
-    // Creating a variable to hold our new HTML. Our HTML now keeps track of the user and computer guesses, and wins/losses/ties.
-    
-
-    // Set the inner HTML contents of the #game div to our html string
-    document.querySelector("#wins").innerHTML = wins;
-    document.querySelector("#losses").innerHTML = losses;
-    document.querySelector("#guessesLeft").innerHTML = guessesLeft;
-    document.querySelector("#guesses").innerHTML = guesses.join(", ");
+    updateTracker();
 }
-
-// document.onkeyup = function(event) {
-//     printGuess(userGuess);
-//     document.querySelector("#guesses").innerHTML = html;
-// }

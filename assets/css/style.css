@@ -1,0 +1,12 @@
+body {
+    background-image: url(../images/psychic-pokemon.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    font-family: 'Patua One', cursive;
+}
+
+h1 {
+    /* font-family: 'Patua One', cursive; */
+    font-size: 5rem;
+}
