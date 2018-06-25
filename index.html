@@ -6,20 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Psychic Game</title>
     <link href="assets/css/reset.css" rel="stylesheet" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="assets/css/style.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Patua+One" rel="stylesheet">
-    
+
 </head>
 <body>
 
-    <h1>The Psychic Game</h1>
-    <p>Guess what letter I'm thinking of.</p>
-    
-    <div class="gameInfo">
-        <p>Wins: <span id="wins">0</span></p>
-        <p>Losses: <span id="losses">0</span></p>
-        <p>Guesses Left: <span id="guessesLeft">10</span>
-        <p>Your Guesses so far: <span id="guesses"></span></P>
+    <div class="transparent-background">
+        <div class="container">
+            <div class="banner">
+                <h1>The Psychic Game</h1>
+            </div>
+
+            <div class="gameInfo col-xs-12 col-md-8 col-lg-6">
+                <p>Guess what letter I'm thinking of.</p>
+                <p>Wins: <span id="wins">0</span></p>
+                <p>Losses: <span id="losses">0</span></p>
+                <p>Guesses Left: <span id="guessesLeft">10</span>
+                <p>Your Guesses so far: <span id="guesses"></span></P>
+            </div>
+        </div>
     </div>
 
     <script type="text/javascript" src="assets/javascript/game.js"></script>

@@ -1,12 +1,40 @@
 body {
-    background-image: url(../images/psychic-pokemon.jpeg);
+    background-image: url(../images/psychic-background.jpeg);
     background-repeat: no-repeat;
-    background-size: cover;
-    color: white;
-    font-family: 'Patua One', cursive;
+    background-position: 50% 25%;
+    color: darkblue;
+    font-family: 'Patua One';
+}
+
+.transparent-background {
+    position: absolute;
+    background-color: #ffffff;
+    opacity: .6;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.container {
+    margin: 40px auto;
 }
 
 h1 {
-    /* font-family: 'Patua One', cursive; */
+    margin-top: 5rem;
+    text-align: center;
     font-size: 5rem;
+}
+
+#wins, #losses, #guessesLeft, #guesses {
+    font-weight: bolder;
+    font-size: 1.5rem;
+}
+
+.gameInfo {
+    margin: 40px auto;
+}
+
+p {
+    font-size: 1.25rem;
+    margin: 4px;
 }
