@@ -31,8 +31,6 @@ const resetGame = function () {
     player.clearGuesses();
 };
 
-computer.ChooseNewKey();
-
 // Creating variables to hold new HTML.
 const updateTracker = function () {
     document.querySelector("#wins").innerHTML = player.wins;
@@ -40,6 +38,7 @@ const updateTracker = function () {
     document.querySelector("#guessesLeft").innerHTML = player.guessesLeft;
     document.querySelector("#guesses").innerHTML = player.guesses.join(", ");
 }
+computer.ChooseNewKey();
 
 // This function is run whenever the user presses a key.
 document.onkeyup = function(event) {
