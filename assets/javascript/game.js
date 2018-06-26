@@ -18,10 +18,12 @@ var player = {
 // computer object
 var computer = {
     computerKeys: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
-    
+    chosenKey: '',
+
     // Randomly chooses a choice from the options array. This is the Computer's guess.
     ChooseNewKey: function () {
-        chosenKey = this.computerKeys[Math.floor(Math.random() * this.computerKeys.length)];
+        this.chosenKey = this.computerKeys[Math.floor(Math.random() * this.computerKeys.length)];
+        console.log(this.chosenKey);
     },
 }
 
@@ -56,13 +58,13 @@ document.onkeyup = function(event) {
     if(isLetter >= 0) {
         if (checkDuplicateGuess >= 0) {
             alert(`Already guessed letter "${userGuess}"!!!`);
-        } else if (player.userGuess === chosenKey) {
-            wins++;
+        } else if (userGuess === computer.chosenKey) {
+            player.wins++;
             alert("Winner winner chicken dinner!");
             resetGame();
-        } else if ((player.userGuess != chosenKey) && (checkDuplicateGuess == -1)) {
+        } else if ((userGuess != computer.chosenKey) && (checkDuplicateGuess == -1)) {
             if (player.guessesLeft <= 1) {
-                losses++;
+                player.losses++;
                 alert("You lose! Try again!");
                 resetGame();
             } else {
