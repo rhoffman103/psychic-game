@@ -13,6 +13,13 @@ var player = {
     addGuess: function (guess) {
         this.guesses.push(guess);
     },
+    checkDuplicateGuess: function (guess) {
+        if (this.guesses.indexOf(guess) >= 0) {
+            this.duplicateGuess = true;
+        } else {
+            this.duplicateGuess = false;
+        }
+    }
 }
 
 // computer object
@@ -40,29 +47,31 @@ const updateTracker = function () {
     document.querySelector("#guessesLeft").innerHTML = player.guessesLeft;
     document.querySelector("#guesses").innerHTML = player.guesses.join(", ");
 }
-computer.ChooseNewKey();
+
+// Start the game
+resetGame();
 
 // This function is run whenever the user presses a key.
 document.onkeyup = function(event) {
     
     // Determines which key was pressed.
-    var userGuess = event.key.toLowerCase();
+    userGuess = event.key.toLowerCase();
 
     // Perform guessCheck
-    var checkDuplicateGuess = player.guesses.indexOf(userGuess);
+    player.checkDuplicateGuess(userGuess);
 
     // Check if user input is a letter
     var isLetter = computer.computerKeys.indexOf(userGuess);
     
     // Logic determines outcome of game
     if(isLetter >= 0) {
-        if (checkDuplicateGuess >= 0) {
+        if (player.duplicateGuess) {
             alert(`Already guessed letter "${userGuess}"!!!`);
         } else if (userGuess === computer.chosenKey) {
             player.wins++;
             alert("Winner winner chicken dinner!");
             resetGame();
-        } else if ((userGuess != computer.chosenKey) && (checkDuplicateGuess == -1)) {
+        } else if ((userGuess != computer.chosenKey) && (!player.duplicateGuess)) {
             if (player.guessesLeft <= 1) {
                 player.losses++;
                 alert("You lose! Try again!");
